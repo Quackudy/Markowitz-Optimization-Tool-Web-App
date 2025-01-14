@@ -2,11 +2,11 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY requirement.txt /app/requirement.txt
+COPY requirements.txt /app/requirements.txt
 
 COPY main.py /app/main.py
 
-RUN pip3 install -r requirement.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 8501
 
