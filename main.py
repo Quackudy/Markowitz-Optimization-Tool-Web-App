@@ -6,6 +6,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+plt.rcParams['figure.facecolor'] = '#0e1117'  
+plt.rcParams['axes.facecolor'] = '#0e1117'
+plt.rcParams['axes.edgecolor'] = 'white'  
+plt.rcParams['axes.labelcolor'] = 'white' 
+plt.rcParams['xtick.color'] = 'white'  
+plt.rcParams['ytick.color'] = 'white' 
+plt.rcParams['legend.facecolor'] = '#1e2530'  
+plt.rcParams['legend.edgecolor'] = 'white'  
+plt.rcParams['legend.labelcolor'] = 'white' 
+
+
 # Web Title
 st.title('Portfolio Optimization Tool')
 
@@ -117,7 +128,6 @@ with col[0]:
 with col[1]:
     slide = st.slider("A correlation more than selected threshold will be filtered out:", 0.0, 1.0, 0.7, 0.05, key="filter")
 
-st.write(slide)
 col = st.columns([1,10,1])
 with col[1] :
     corr = df.corr(method=corr_method)
