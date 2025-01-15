@@ -147,7 +147,7 @@ with col[1] :
 st.markdown("## Markowitz Portfolio Optimization")
 
 @st.cache_data
-def optimize():
+def optimize(sample):
 
     month = interval[:-2]  # Find how many months per interval
     day = interval[:-1]  # Find how many days per interval
@@ -161,7 +161,7 @@ def optimize():
         cov_matrix = data_percent_change.cov() * 12  / int(month) 
 
     n = data_percent_change.shape[1]  # Number of stocks
-    sample = 500*n**3  # Number of sample for Monte Carlo simulation
+    #sample = 500*n**3  # Number of sample for Monte Carlo simulation
 
     results = np.zeros((sample, 3))  # Store results
 
@@ -205,8 +205,16 @@ def optimize():
     return fig, maxSharpe, maxWeights
 
 # Button to trigger optimization
-if st.button('Click To Start Optimization', on_click=optimize.clear()) :
-    fig, max_sharpe_ratio, optimize_weight = optimize()
+
+col = st.columns([2,11])
+
+with col[0] :
+    optimize_button = st.button('Optimize', on_click=optimize.clear())
+with col[1] :
+    sample_num = st.select_slider("Choose number of samples for Monte Carlo simulation:", options=[1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000], value=5000, key="sample_num")
+
+if optimize_button :
+    fig, max_sharpe_ratio, optimize_weight = optimize(sample_num)
 
     st.pyplot(fig)
 
