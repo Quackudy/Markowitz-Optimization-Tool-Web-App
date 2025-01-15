@@ -6,6 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+
 plt.rcParams['figure.facecolor'] = '#0e1117'  
 plt.rcParams['axes.facecolor'] = '#0e1117'
 plt.rcParams['axes.edgecolor'] = 'white'  
@@ -130,7 +131,7 @@ with col[1]:
 
 col = st.columns([1,10,1])
 with col[1] :
-    corr = df.corr(method=corr_method)
+    corr = data_percent_change.corr(method=corr_method)
 
     # Create masks
     triMask = np.triu(np.ones_like(corr, dtype=bool))  # Upper triangle mask
@@ -211,7 +212,7 @@ col = st.columns([2,11])
 with col[0] :
     optimize_button = st.button('Optimize', on_click=optimize.clear())
 with col[1] :
-    sample_num = st.select_slider("Choose number of samples for Monte Carlo simulation:", options=[1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000], value=5000, key="sample_num")
+    sample_num = st.select_slider("Choose number of samples for Monte Carlo simulation:", options=[1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000], value=10000, key="sample_num")
 
 if optimize_button :
     fig, max_sharpe_ratio, optimize_weight = optimize(sample_num)
